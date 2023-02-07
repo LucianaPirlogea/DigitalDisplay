@@ -14,6 +14,7 @@ namespace DigitalDisplayBO.API.Models
         public string Name { get; set; } = null!;
         public int CategoryId { get; set; }
         public int AdvertisementTypeId { get; set; }
+        public byte[]? GraphicalContent { get; set; }
         public string? GraphicalContentFilename { get; set; }
         public short? ImageFit { get; set; }
         public string? Text { get; set; }
