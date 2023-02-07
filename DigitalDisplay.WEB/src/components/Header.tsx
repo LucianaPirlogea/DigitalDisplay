@@ -19,8 +19,11 @@ const adsObj = { route: 'AdvertisementList', name: 'Advertisements' };
 const devObj = { route: 'Devices', name: 'Devices' };
 const panObj = { route: 'Panel', name: 'Panel' };
 const panLayObj = { route: 'PanelLayoutOverview', name: 'Panel Layout' };
+const loginObj = { route: 'Login', name: 'Login' };
+const registerObj = { route: 'Register', name: 'Register' };
+const logoutObj = { route: 'Login', name: 'Logout' };
 
-const routes = [adsObj, devObj, panObj, panLayObj];
+const routes = [adsObj, devObj, panObj, panLayObj, loginObj, registerObj, logoutObj];
 
 export const Header: FC = () => {
   const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(
@@ -72,8 +75,6 @@ export const Header: FC = () => {
           <Link style={{ textDecoration: 'none' }} to={''}>
             <TvIcon sx={styleToolBarImg} />
           </Link>
-
-
           <Box sx={styleBox}>
             <IconButton
               size="large"
