@@ -13,6 +13,7 @@ import AdbIcon from '@mui/icons-material/Adb';
 import { FC } from 'react';
 import { Link } from 'react-router-dom';
 import './header.css';
+import TvIcon from '@mui/icons-material/Tv';
 
 const adsObj = { route: 'AdvertisementList', name: 'Advertisements' };
 const devObj = { route: 'Devices', name: 'Devices' };
@@ -35,8 +36,9 @@ export const Header: FC = () => {
   };
 
   const styleToolBarImg = {
-    maxWidth: '68px',
-    marginRight: '50px',
+    width: '80px',
+    height: '80px',
+    marginRight: '20px',
   };
 
   const styleBox = {
@@ -67,11 +69,7 @@ export const Header: FC = () => {
     <AppBar className="navSettings" position="static">
       <Container maxWidth="xl">
         <Toolbar disableGutters>
-          <img
-            src={require('../images/header_logo.png')}
-            alt="Kitty Katty!"
-            style={styleToolBarImg}
-          />
+          <TvIcon sx={styleToolBarImg} />
 
           <Box sx={styleBox}>
             <IconButton
