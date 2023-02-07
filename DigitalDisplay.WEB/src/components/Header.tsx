@@ -69,7 +69,10 @@ export const Header: FC = () => {
     <AppBar className="navSettings" position="static">
       <Container maxWidth="xl">
         <Toolbar disableGutters>
-          <TvIcon sx={styleToolBarImg} />
+          <Link style={{ textDecoration: 'none' }} to={''}>
+            <TvIcon sx={styleToolBarImg} />
+          </Link>
+
 
           <Box sx={styleBox}>
             <IconButton
