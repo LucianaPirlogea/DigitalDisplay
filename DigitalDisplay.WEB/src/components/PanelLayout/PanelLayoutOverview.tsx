@@ -83,7 +83,7 @@ export const PanelLayoutOverview: FC = () => {
 
   const createPanelLayoutObj = { route: 'CreatePanelLayout' };
 
-  //Oppimization
+  //Optimization
   useEffect(() => {
     getPanelLayout();
     // eslint-disable-next-line react-hooks/exhaustive-deps

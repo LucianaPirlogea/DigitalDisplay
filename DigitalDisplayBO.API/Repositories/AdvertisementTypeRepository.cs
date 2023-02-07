@@ -6,7 +6,7 @@ namespace DigitalDisplayBO.API.Repositories
     public class AdvertisementTypeRepository : GenericRepository<AdvertisementType>, IAdvertisementTypeRepository
     {
 
-        public AdvertisementTypeRepository(NetRomInternship2022OlandaDevContext context) : base(context)
+        public AdvertisementTypeRepository(DigitalDisplayDBContext context) : base(context)
         {
            _context = context;
         }

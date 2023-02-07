@@ -1,9 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using DigitalDisplayBO.API.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
 
-namespace DigitalDisplayBO.API.Models
+namespace DigitalDisplayBO.API
 {
     public partial class DigitalDisplayDBContext : DbContext
     {

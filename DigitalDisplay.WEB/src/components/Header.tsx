@@ -104,7 +104,6 @@ export const Header: FC = () => {
                 <MenuItem key={obj.route} onClick={handleCloseNavMenu}>
                   <Link style={{ textDecoration: 'none' }} to={`/${obj.route}`}>
                     <Typography textAlign="center">
-                      {/* {page} */}
 
                       {obj.name}
                     </Typography>

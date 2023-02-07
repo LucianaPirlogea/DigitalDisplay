@@ -7,10 +7,10 @@ namespace DigitalDisplayBO.API.Repositories
 {
     public class DeviceRepository : GenericRepository<Device>, IDeviceRepository
     {
-        protected new NetRomInternship2022OlandaDevContext _context;
+        protected new DigitalDisplayDBContext _context;
         private readonly ILogger<DeviceRepository> _logger;
 
-        public DeviceRepository(NetRomInternship2022OlandaDevContext context, ILogger<DeviceRepository> logger) : base(context)
+        public DeviceRepository(DigitalDisplayDBContext context, ILogger<DeviceRepository> logger) : base(context)
         {
             _context = context;
             _logger = logger;

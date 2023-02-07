@@ -4,9 +4,9 @@ namespace DigitalDisplayBO.API.Repositories
 {
     public class GenericRepository<TEntity> : IGenericRepository<TEntity> where TEntity : class, new()
     {
-        protected NetRomInternship2022OlandaDevContext _context;
+        protected DigitalDisplayDBContext _context;
 
-        public GenericRepository(NetRomInternship2022OlandaDevContext context)
+        public GenericRepository(DigitalDisplayDBContext context)
         {
             _context = context;
         }

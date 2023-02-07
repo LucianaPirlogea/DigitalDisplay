@@ -5,10 +5,11 @@ namespace DigitalDisplayBO.API.Repositories
 {
     public class PanelAdvertisementsRepository : GenericRepository<PanelAdvertisement>, IPanelAdvertisementsRepository
     {
-        protected new NetRomInternship2022OlandaDevContext _context;
+        protected new DigitalDisplayDBContext
+            _context;
         private readonly IPanelZoneRepository _panelZoneRepository;
 
-        public PanelAdvertisementsRepository(NetRomInternship2022OlandaDevContext context, IPanelZoneRepository panelZoneRepository) : base(context)
+        public PanelAdvertisementsRepository(DigitalDisplayDBContext context, IPanelZoneRepository panelZoneRepository) : base(context)
         {
             _panelZoneRepository = panelZoneRepository;
         }

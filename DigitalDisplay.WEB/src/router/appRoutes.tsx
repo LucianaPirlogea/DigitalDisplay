@@ -17,8 +17,6 @@ export const AppRoutes: FC = () => {
   return (
     <>
       <Routes>
-        <Route path={'/DemoAds'} element={<DemoAds />} />
-        {/*TODELETE after getting used to it*/}
         <Route path={'/'} element={<App />}>
           <Route path={'/Devices'} element={<DeviceLanding />} />
           <Route path={'/AdvertisementList'} element={<AdvertisementList />} />

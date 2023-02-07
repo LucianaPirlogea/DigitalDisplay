@@ -59,7 +59,6 @@ export const ActionsMenu: FC<Props> = ({
       );
     }
 
-    // return
     if (archiveValue === false && onArchiveButton !== undefined) {
       return (
         <MenuItem
