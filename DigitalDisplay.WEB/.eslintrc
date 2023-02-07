@@ -1,0 +1,4 @@
+{
+  "$schema": "http://json.schemastore.org/eslintrc.json",
+  "extends": ["react-app", "react-app/jest"]
+}

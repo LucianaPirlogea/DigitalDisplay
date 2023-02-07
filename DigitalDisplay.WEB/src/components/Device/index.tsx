@@ -1,0 +1,1 @@
+export { DeviceLanding } from './DeviceLanding';

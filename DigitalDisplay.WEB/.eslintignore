@@ -1,0 +1,10 @@
+**/.cache/
+**/.idea/
+**/.vscode/
+**/public/
+**/dist/
+**/.vscode/
+**/node_modules/
+*.js
+src/react-app-env.d.ts
+**/store/

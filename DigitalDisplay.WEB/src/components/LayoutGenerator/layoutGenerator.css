@@ -1,0 +1,82 @@
+.active {
+  background-color: red;
+}
+
+.hide {
+  display: none;
+}
+
+.gridLayoutWrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.columnSizeInputsWrapper {
+  display: flex;
+  justify-content: space-evenly;
+  margin-left: 66px;
+}
+
+.rowSizeInputsWrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+}
+
+.tableContainerWrapper {
+  display: inline-flex;
+}
+
+.tableContainer {
+  display: grid;
+  width: 1000px;
+  height: 500px;
+}
+
+.tableSizeWrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 100px;
+}
+
+.rowSizeInput {
+  display: block;
+}
+
+.columnSizeInput,
+.rowSizeInput {
+  width: 8ch;
+}
+
+.layoutTableCell {
+  position: relative;
+}
+
+.resize-top,
+.resize-down,
+.resize-left,
+.resize-right {
+  position: absolute;
+  padding: 5px;
+}
+
+.resize-top {
+  left: calc(50% - 20px);
+}
+
+.resize-down {
+  bottom: 0;
+  left: calc(50% - 20px);
+}
+
+.resize-left {
+  bottom: calc(50% - 20px);
+}
+
+.resize-right {
+  right: 0;
+  bottom: calc(50% - 20px);
+}
