@@ -1,6 +1,8 @@
 import { Button, FormControl, Grid, InputAdornment, Paper, TextField, Typography } from "@mui/material";
 import { FC, useState } from "react";
 import { useNavigate } from "react-router";
+import { LoginUser } from "../../models/user";
+import { loginUser } from "../../services/auth";
 
 export const Login: FC = () => {
     const errorMessages = {
@@ -20,7 +22,7 @@ export const Login: FC = () => {
             flag = false;
         }
         if (password.length === 0) {
-            setEmailErrorText(errorMessages.empty);
+            setPasswordErrorText(errorMessages.empty);
             flag = false;
         }
         return flag;
@@ -34,16 +36,15 @@ export const Login: FC = () => {
         console.log(email);
         console.log(password);
 
-        // const panel: CreatePanelInfo = {
-        //   panelLayoutId: selectedLayout!.id,
-        //   name: name,
-        //   backgroundColor: selectedColor.slice(1),
-        //   backgroundImageFilename: filename,
-        //   zones: zones,
-        // };
 
-        //await createPanel(panel);
-        //navigate('/Panel');
+        const user: LoginUser = {
+            email: email,
+            password: password
+        };
+
+        const token = await loginUser(user);
+        navigate('/Home');
+
     };
     const formStyle = {
         width: '70%',
@@ -98,7 +99,7 @@ export const Login: FC = () => {
                         }
                     }}
                 >
-                    Save
+                    Submit
                 </Button>
             </Grid>
         </Grid>

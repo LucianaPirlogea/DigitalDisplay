@@ -1,6 +1,8 @@
 import { Button, FormControl, Grid, InputAdornment, Paper, TextField, Typography } from "@mui/material";
 import { FC, useState } from "react";
 import { useNavigate } from "react-router";
+import { RegisterUser } from "../../models/user";
+import { registerUser } from "../../services/auth";
 
 export const Register: FC = () => {
     const errorMessages = {
@@ -11,18 +13,28 @@ export const Register: FC = () => {
     const [emailErrorText, setEmailErrorText] = useState<string>('');
     const [passwordErrorText, setPasswordErrorText] = useState<string>('');
 
+    const [firstName, setFirstName] = useState<string>('');
+    const [lastName, setLastName] = useState<string>('');
     const [email, setEmail] = useState<string>('');
     const [password, setPassword] = useState<string>('');
     const navigate = useNavigate();
 
     const checkErrors = () => {
         let flag = true;
+        if (firstName.length === 0) {
+            setFirstNameErrorText(errorMessages.empty);
+            flag = false;
+        }
+        if (lastName.length === 0) {
+            setLastNameErrorText(errorMessages.empty);
+            flag = false;
+        }
         if (email.length === 0) {
             setEmailErrorText(errorMessages.empty);
             flag = false;
         }
         if (password.length === 0) {
-            setEmailErrorText(errorMessages.empty);
+            setPasswordErrorText(errorMessages.empty);
             flag = false;
         }
         return flag;
@@ -33,8 +45,24 @@ export const Register: FC = () => {
 
     const savePanelInfo = async () => {
 
+        console.log(firstName);
+        console.log(lastName);
         console.log(email);
         console.log(password);
+
+        console.log(email);
+        console.log(password);
+
+
+        const user: RegisterUser = {
+            firstName: firstName,
+            lastName: lastName,
+            email: email,
+            password: password
+        };
+
+        await registerUser(user);
+        navigate('/');
 
         // const panel: CreatePanelInfo = {
         //   panelLayoutId: selectedLayout!.id,
@@ -55,9 +83,37 @@ export const Register: FC = () => {
     return (
         <Grid container spacing={2} component={Paper} sx={formStyle}>
             <Grid item xs={12}>
-                <Typography variant="h5">Login into account</Typography>
+                <Typography variant="h5">Create an account</Typography>
             </Grid>
             <Grid item xs={6}>
+                <FormControl fullWidth>
+                    <TextField
+                        variant="standard"
+                        id="firstName"
+                        label="First Name"
+                        required
+                        onChange={(e) => {
+                            const firstNameInput = e.target.value.trim();
+                            setFirstName(firstNameInput);
+                        }}
+                        error={isErrored(firstNameErrorText)}
+                        helperText={isErrored(firstNameErrorText) ? firstNameErrorText : ''}
+                    />
+                </FormControl>
+                <FormControl fullWidth>
+                    <TextField
+                        variant="standard"
+                        id="lastName"
+                        label="Last Name"
+                        required
+                        onChange={(e) => {
+                            const lastNameInput = e.target.value.trim();
+                            setLastName(lastNameInput);
+                        }}
+                        error={isErrored(lastNameErrorText)}
+                        helperText={isErrored(lastNameErrorText) ? lastNameErrorText : ''}
+                    />
+                </FormControl>
                 <FormControl fullWidth>
                     <TextField
                         variant="standard"
@@ -100,7 +156,7 @@ export const Register: FC = () => {
                         }
                     }}
                 >
-                    Save
+                    Submit
                 </Button>
             </Grid>
         </Grid>

@@ -5,7 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace DigitalDisplayBO.API.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("[controller]")]
     [ApiController]
     public class UserController : ControllerBase
     {
