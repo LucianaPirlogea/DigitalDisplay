@@ -44,16 +44,6 @@ export const Register: FC = () => {
     };
 
     const savePanelInfo = async () => {
-
-        console.log(firstName);
-        console.log(lastName);
-        console.log(email);
-        console.log(password);
-
-        console.log(email);
-        console.log(password);
-
-
         const user: RegisterUser = {
             firstName: firstName,
             lastName: lastName,
@@ -62,18 +52,7 @@ export const Register: FC = () => {
         };
 
         await registerUser(user);
-        navigate('/');
-
-        // const panel: CreatePanelInfo = {
-        //   panelLayoutId: selectedLayout!.id,
-        //   name: name,
-        //   backgroundColor: selectedColor.slice(1),
-        //   backgroundImageFilename: filename,
-        //   zones: zones,
-        // };
-
-        //await createPanel(panel);
-        //navigate('/Panel');
+        navigate('/Login');
     };
     const formStyle = {
         width: '70%',

@@ -2,7 +2,8 @@ import { Button, FormControl, Grid, InputAdornment, Paper, TextField, Typography
 import { FC, useState } from "react";
 import { useNavigate } from "react-router";
 import { LoginUser } from "../../models/user";
-import { loginUser } from "../../services/auth";
+import { PostData } from "../../services/auth";
+//import { loginUser } from "../../services/auth";
 
 export const Login: FC = () => {
     const errorMessages = {
@@ -42,8 +43,9 @@ export const Login: FC = () => {
             password: password
         };
 
-        const token = await loginUser(user);
-        navigate('/Home');
+        const token = PostData(user);
+        console.log(token);
+        navigate('/');
 
     };
     const formStyle = {
@@ -105,3 +107,4 @@ export const Login: FC = () => {
         </Grid>
     );
 };
+
