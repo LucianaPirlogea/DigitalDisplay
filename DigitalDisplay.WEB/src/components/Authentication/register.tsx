@@ -7,16 +7,21 @@ import { registerUser } from "../../services/auth";
 export const Register: FC = () => {
     const errorMessages = {
         empty: 'Empty field!',
+        email: 'Incorrect email address',
+        pass: 'Your password must be at least 10 characters long',
+        passConfirm: 'Your confirmation password is not the same'
     };
     const [firstNameErrorText, setFirstNameErrorText] = useState<string>('');
     const [lastNameErrorText, setLastNameErrorText] = useState<string>('');
     const [emailErrorText, setEmailErrorText] = useState<string>('');
     const [passwordErrorText, setPasswordErrorText] = useState<string>('');
+    const [passwordErrorTextConfirm, setPasswordErrorTextConfirm] = useState<string>('');
 
     const [firstName, setFirstName] = useState<string>('');
     const [lastName, setLastName] = useState<string>('');
     const [email, setEmail] = useState<string>('');
     const [password, setPassword] = useState<string>('');
+    const [passwordConfirm, setPasswordConfirm] = useState<string>('');
     const navigate = useNavigate();
 
     const checkErrors = () => {
@@ -33,8 +38,24 @@ export const Register: FC = () => {
             setEmailErrorText(errorMessages.empty);
             flag = false;
         }
+        else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(email)) {
+            setEmailErrorText(errorMessages.email);
+            flag = false;
+        }
         if (password.length === 0) {
             setPasswordErrorText(errorMessages.empty);
+            flag = false;
+        }
+        else if (password.length < 10) {
+            setPasswordErrorText(errorMessages.pass);
+            flag = false;
+        }
+        if (passwordConfirm.length === 0) {
+            setPasswordErrorTextConfirm(errorMessages.empty);
+            flag = false;
+        }
+        else if (password !== passwordConfirm) {
+            setPasswordErrorTextConfirm(errorMessages.passConfirm);
             flag = false;
         }
         return flag;
@@ -121,6 +142,22 @@ export const Register: FC = () => {
                         }}
                         error={isErrored(passwordErrorText)}
                         helperText={isErrored(passwordErrorText) ? passwordErrorText : ''}
+                    />
+                </FormControl>
+                <FormControl fullWidth>
+                    <TextField
+                        id="standard-password-input"
+                        label="Confirm Password"
+                        type="password"
+                        required
+                        autoComplete="current-password"
+                        variant="standard"
+                        onChange={(e) => {
+                            const passInput = e.target.value.trim();
+                            setPasswordConfirm(passInput);
+                        }}
+                        error={isErrored(passwordErrorTextConfirm)}
+                        helperText={isErrored(passwordErrorTextConfirm) ? passwordErrorTextConfirm : ''}
                     />
                 </FormControl>
             </Grid>
