@@ -5,9 +5,9 @@ namespace DigitalDisplayBO.API.Repositories
 {
     public class PanelZoneRepository:GenericRepository<PanelZone>, IPanelZoneRepository
     {
-        protected new NetRomInternship2022OlandaDevContext _context;
+        protected new DigitalDisplayDBContext _context;
 
-        public PanelZoneRepository(NetRomInternship2022OlandaDevContext context) : base(context)
+        public PanelZoneRepository(DigitalDisplayDBContext context) : base(context)
         {
             _context = context;
         }

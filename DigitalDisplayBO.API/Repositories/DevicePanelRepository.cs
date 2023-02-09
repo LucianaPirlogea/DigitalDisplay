@@ -7,9 +7,10 @@ namespace DigitalDisplayBO.API.Repositories
 {
     public class DevicePanelRepository : GenericRepository<DevicePanel>, IDevicePanelRepository
     {
-        protected new NetRomInternship2022OlandaDevContext _context;
+        protected new DigitalDisplayDBContext
+            _context;
 
-        public DevicePanelRepository(NetRomInternship2022OlandaDevContext context) : base(context)
+        public DevicePanelRepository(DigitalDisplayDBContext context) : base(context)
         {
         }
     }

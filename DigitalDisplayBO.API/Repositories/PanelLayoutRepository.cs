@@ -10,7 +10,7 @@ namespace DigitalDisplayBO.API.Repositories
     {
         private readonly ILogger<PanelLayoutRepository> _logger;
         private readonly IPanelLayoutZoneRepository _panelLayoutZoneRepository;
-        public PanelLayoutRepository(NetRomInternship2022OlandaDevContext context, ILogger<PanelLayoutRepository> logger, IPanelLayoutZoneRepository panelLayoutZoneRepository) : base(context)
+        public PanelLayoutRepository(DigitalDisplayDBContext context, ILogger<PanelLayoutRepository> logger, IPanelLayoutZoneRepository panelLayoutZoneRepository) : base(context)
         {
             _logger = logger;
             _context = context;

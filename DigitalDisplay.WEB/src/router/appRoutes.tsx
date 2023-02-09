@@ -12,13 +12,13 @@ import { CreatePanel } from '../components/CreatePanel';
 import { CreatePanelLayout } from '../components/CreatePanelLayout';
 import { EditPanelLayout } from '../components/EditPanelLayout';
 import { PanelLayoutProvider } from '../components/Providers/PanelLayoutProvider';
+import { Login } from '../components/Authentication/Login';
+import { Register } from '../components/Authentication/Register';
 
 export const AppRoutes: FC = () => {
   return (
     <>
       <Routes>
-        <Route path={'/DemoAds'} element={<DemoAds />} />
-        {/*TODELETE after getting used to it*/}
         <Route path={'/'} element={<App />}>
           <Route path={'/Devices'} element={<DeviceLanding />} />
           <Route path={'/AdvertisementList'} element={<AdvertisementList />} />
@@ -49,6 +49,8 @@ export const AppRoutes: FC = () => {
               </PanelLayoutProvider>
             }
           />
+          <Route path={'/Login'} element={<Login />} />
+          <Route path={'/Register'} element={<Register />} />
         </Route>
       </Routes>
     </>

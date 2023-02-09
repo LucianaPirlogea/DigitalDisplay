@@ -9,7 +9,7 @@ namespace DigitalDisplayBO.API.Repositories
     public class AdvertisementRepository : GenericRepository<Advertisement>, IAdvertisementRepository
     {
         private readonly ILogger<AdvertisementRepository> _logger;
-        public AdvertisementRepository(NetRomInternship2022OlandaDevContext context, ILogger<AdvertisementRepository> logger) : base(context) {
+        public AdvertisementRepository(DigitalDisplayDBContext context, ILogger<AdvertisementRepository> logger) : base(context) {
             _logger = logger;    
         }
 

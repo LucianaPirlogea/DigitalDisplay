@@ -8,11 +8,11 @@ namespace DigitalDisplayBO.API.Repositories
     public class PanelRepository : GenericRepository<Panel>, IPanelRepository
     {
         private readonly ILogger<PanelRepository> _logger;
-        protected new NetRomInternship2022OlandaDevContext _context;
+        protected new DigitalDisplayDBContext _context;
         private readonly IPanelZoneRepository _panelZoneRepository;
         private readonly IPanelAdvertisementsRepository _panelAdvertisementsRepository;
 
-        public PanelRepository(NetRomInternship2022OlandaDevContext context, ILogger<PanelRepository> logger, IPanelZoneRepository panelZoneRepository, IPanelAdvertisementsRepository panelAdvertisementsRepository) : base(context)
+        public PanelRepository(DigitalDisplayDBContext context, ILogger<PanelRepository> logger, IPanelZoneRepository panelZoneRepository, IPanelAdvertisementsRepository panelAdvertisementsRepository) : base(context)
         {
             _context = context;
             _logger = logger;
