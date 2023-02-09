@@ -2,8 +2,7 @@ import { Button, FormControl, Grid, InputAdornment, Paper, TextField, Typography
 import { FC, useState } from "react";
 import { useNavigate } from "react-router";
 import { LoginUser } from "../../models/user";
-import { PostData } from "../../services/auth";
-//import { loginUser } from "../../services/auth";
+import { loginUser } from "../../services/auth";
 
 export const Login: FC = () => {
     const errorMessages = {
@@ -34,17 +33,12 @@ export const Login: FC = () => {
 
     const savePanelInfo = async () => {
 
-        console.log(email);
-        console.log(password);
-
-
         const user: LoginUser = {
             email: email,
             password: password
         };
 
-        const token = PostData(user);
-        console.log(token);
+        await loginUser(user);
         navigate('/');
 
     };

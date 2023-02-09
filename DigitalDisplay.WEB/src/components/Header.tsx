@@ -14,6 +14,7 @@ import { FC } from 'react';
 import { Link } from 'react-router-dom';
 import './header.css';
 import TvIcon from '@mui/icons-material/Tv';
+import { getToken, isLogged } from '../utils/authUtils';
 
 const adsObj = { route: 'AdvertisementList', name: 'Advertisements' };
 const devObj = { route: 'Devices', name: 'Devices' };
@@ -23,12 +24,17 @@ const loginObj = { route: 'Login', name: 'Login' };
 const registerObj = { route: 'Register', name: 'Register' };
 const logoutObj = { route: 'Login', name: 'Logout' };
 
-const routes = [adsObj, devObj, panObj, panLayObj, loginObj, registerObj, logoutObj];
+const routesLogged = [adsObj, devObj, panObj, panLayObj, logoutObj];
+const routesUnlogged = [loginObj, registerObj];
+
 
 export const Header: FC = () => {
   const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(
     null
   );
+
+  const routes = isLogged(getToken()) ? routesLogged : routesUnlogged;
+
 
   const handleOpenNavMenu = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorElNav(event.currentTarget);
@@ -36,6 +42,12 @@ export const Header: FC = () => {
 
   const handleCloseNavMenu = () => {
     setAnchorElNav(null);
+  };
+
+  const verifLogout = (name: string) => {
+    if (name === 'Logout') {
+      window.localStorage.clear();
+    }
   };
 
   const styleToolBarImg = {
@@ -105,7 +117,7 @@ export const Header: FC = () => {
               }}
             >
               {routes.map((obj) => (
-                <MenuItem key={obj.route} onClick={handleCloseNavMenu}>
+                <MenuItem key={obj.route} onClick={() => { handleCloseNavMenu(); verifLogout(obj.name) }}>
                   <Link style={{ textDecoration: 'none' }} to={`/${obj.route}`}>
                     <Typography textAlign="center">
 
@@ -127,7 +139,7 @@ export const Header: FC = () => {
                 style={{ textDecoration: 'none', color: 'white' }}
                 to={`/${obj.route}`}
               >
-                <Button onClick={handleCloseNavMenu} sx={styleButton}>
+                <Button onClick={() => { handleCloseNavMenu(); verifLogout(obj.name) }} sx={styleButton}>
                   {obj.name}
                 </Button>
               </Link>
@@ -135,6 +147,6 @@ export const Header: FC = () => {
           </Box>
         </Toolbar>
       </Container>
-    </AppBar>
+    </AppBar >
   );
 };
