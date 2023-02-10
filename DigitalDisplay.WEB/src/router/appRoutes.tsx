@@ -1,8 +1,7 @@
 import { FC } from 'react';
-import { Route, Routes } from 'react-router-dom';
+import { Navigate, Route, Routes } from 'react-router-dom';
 
 import { AdvertisementList, AdsCreate } from '../components/Advertisements/';
-import { DemoAds } from '../components/DemoAds';
 import { PanelOverview } from '../components/Panel/';
 import { DeviceLanding } from '../components/Device';
 
@@ -12,41 +11,77 @@ import { CreatePanel } from '../components/CreatePanel';
 import { CreatePanelLayout } from '../components/CreatePanelLayout';
 import { EditPanelLayout } from '../components/EditPanelLayout';
 import { PanelLayoutProvider } from '../components/Providers/PanelLayoutProvider';
-import { Login } from '../components/Authentication/Login';
-import { Register } from '../components/Authentication/Register';
+import { Login, Register } from '../components/Authentication';
+import { getToken, isAdmin, isLogged } from '../utils/authUtils';
+
+const PrivateRouteAdmin = ({ children }: any) => {
+  if (isAdmin()) {
+    return children
+  }
+
+  return <Navigate to="/" />
+}
+
+const PrivateRouteUser = ({ children }: any) => {
+  if (isLogged(getToken())) {
+    return children
+  }
+
+  return <Navigate to="/Login" />
+}
 
 export const AppRoutes: FC = () => {
   return (
     <>
       <Routes>
         <Route path={'/'} element={<App />}>
-          <Route path={'/Devices'} element={<DeviceLanding />} />
-          <Route path={'/AdvertisementList'} element={<AdvertisementList />} />
-          <Route path={'/Panel'} element={<PanelOverview />} />
+          <Route path={'/Devices'}
+            element={<PrivateRouteUser>
+              <DeviceLanding />
+            </PrivateRouteUser>} />
+          <Route path={'/AdvertisementList'}
+            element={<PrivateRouteUser>
+              <AdvertisementList />
+            </PrivateRouteUser>} />
+          <Route path={'/Panel'}
+            element={<PrivateRouteUser>
+              <PanelOverview />
+            </PrivateRouteUser>} />
           <Route
             path={'/PanelLayoutOverview'}
-            element={<PanelLayoutOverview />}
+            element={<PrivateRouteUser>
+              <PanelLayoutOverview />
+            </PrivateRouteUser>}
           />
-          <Route path={'/AdsCreate'} element={<AdsCreate editMode={false} />} />
-          <Route path={'/CreatePanel'} element={<CreatePanel />} />
+          <Route path={'/AdsCreate'} element={<PrivateRouteAdmin>
+            <AdsCreate editMode={false} />
+          </PrivateRouteAdmin>} />
+          <Route path={'/CreatePanel'} element={<PrivateRouteAdmin>
+            <CreatePanel />
+          </PrivateRouteAdmin>} />
           <Route
             path={'/EditAdvertisement/:advertisementId'}
-            element={<AdsCreate editMode={true} />}
+            element={<PrivateRouteAdmin>
+              <AdsCreate editMode={true} />
+            </PrivateRouteAdmin>}
           />
           <Route
             path={'/CreatePanelLayout'}
-            element={
+            element={<PrivateRouteAdmin>
               <PanelLayoutProvider>
                 <CreatePanelLayout />
               </PanelLayoutProvider>
+            </PrivateRouteAdmin>
             }
           />
           <Route
             path={'/UpdatePanelLayout/:panelLayoutId'}
             element={
-              <PanelLayoutProvider>
-                <EditPanelLayout />
-              </PanelLayoutProvider>
+              <PrivateRouteAdmin>
+                <PanelLayoutProvider>
+                  <EditPanelLayout />
+                </PanelLayoutProvider>
+              </PrivateRouteAdmin>
             }
           />
           <Route path={'/Login'} element={<Login />} />
